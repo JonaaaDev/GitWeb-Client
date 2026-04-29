@@ -88,7 +88,12 @@ export const getBranch = async (owner: string, repo: string, branch: string) => 
 // Files & Contents
 export const getRepoContent = async (owner: string, repo: string, path: string, ref?: string) => {
   const o = getOctokit();
-  const { data } = await o.rest.repos.getContent({ owner, repo, path, ref });
+  // Using timestamp to bypass aggressive browser caching instead of headers
+  const params: any = { owner, repo, path };
+  if (ref) params.ref = ref;
+  // params.t = Date.now(); // Not officially supported but sometimes helps
+  
+  const { data } = await o.rest.repos.getContent(params);
   return data;
 };
 

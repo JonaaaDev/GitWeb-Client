@@ -102,13 +102,7 @@ export default function FileExplorer({
           // native webkitdirectory input adds webkitRelativePath
           const relativeDropPath = (file as any).path || (file as any).webkitRelativePath || file.name;
           // Clean leading slash or './' if any
-          let cleanDropPath = relativeDropPath;
-          if (cleanDropPath.startsWith('./')) {
-            cleanDropPath = cleanDropPath.substring(2);
-          }
-          if (cleanDropPath.startsWith('/')) {
-            cleanDropPath = cleanDropPath.substring(1);
-          }
+          let cleanDropPath = relativeDropPath.replace(/^(\.\/|\/)+/, '');
           
           const fullPath = currentPath ? `${currentPath}/${cleanDropPath}` : cleanDropPath;
           
