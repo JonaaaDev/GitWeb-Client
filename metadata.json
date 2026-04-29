@@ -1,0 +1,6 @@
+{
+  "name": "GitWeb Client",
+  "description": "A web-based GitHub client by Jonathan Gimenez with dark mode, repository management, file editing, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
